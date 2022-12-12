@@ -1,5 +1,4 @@
 "use strict";
-
 const AWS = require("aws-sdk");
 
 const fetchItems = async (event) => {
@@ -12,14 +11,16 @@ const fetchItems = async (event) => {
       const results = await dynamodb.scan({
           TableName: "ItemTableNew"
       }).promise();
+
       items = results.Items
+
     } catch (error) {
       console.log(error) 
     }
 
     return {
       statusCode: 200,
-      body: JASON.stringify(items),
+      body: JSON.stringify(items),
     };
 }
 

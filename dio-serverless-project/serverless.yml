@@ -21,7 +21,7 @@ functions:
   hello:
     handler: src/handler.hello
     events:
-      - httpApi:
+      - http:
           path: /
           method: get
   insertItem:
