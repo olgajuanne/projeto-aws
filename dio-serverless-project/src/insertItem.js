@@ -9,7 +9,7 @@ const insertItem = async ( event) => {
     const createdAt = new Date().toISOString();
     const id = v4()
 
-    const dynamoDB = new AWS.DynamoDB.DocumentClient()
+    const dynamodb = new AWS.DynamoDB.DocumentClient()
 
     const newItem = {
       id,
@@ -18,16 +18,14 @@ const insertItem = async ( event) => {
       itemStatus: false
     }
 
-    await dynamoDB.put(
-      {
+    await dynamodb.put({
           TableName: "ItemTableNew",
           Item: newItem
-      }
-    )
+      }).promise()
 
     return {
       statusCode: 200,
-      body: JSON.stringify(newItem)
+      body: JSON.stringify(newItem),
     };
 
 }
